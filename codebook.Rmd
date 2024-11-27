@@ -1,29 +1,62 @@
+### **CodeBook**
+
+#### **1. Overview**
+This dataset was generated from the Human Activity Recognition dataset collected using smartphones. The purpose of this tidy dataset is to summarize the average of each variable for each activity and each subject.
+
 ---
-title: "codebook"
-output: html_document
-date: "2024-11-26"
+
+#### **2. Source of Data**
+- Original dataset: [Human Activity Recognition Using Smartphones Dataset](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+- Data collected from the accelerometers and gyroscopes of the Samsung Galaxy S smartphone.
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+#### **3. Variables**
 
-## R Markdown
+##### **Identifiers**
+1. **Subject**: An integer identifying the subject (1 to 30).
+2. **Activity**: The activity performed by the subject. Possible values:
+   - WALKING
+   - WALKING_UPSTAIRS
+   - WALKING_DOWNSTAIRS
+   - SITTING
+   - STANDING
+   - LAYING
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+##### **Measurements**
+The dataset contains averaged measurements of the mean and standard deviation for each signal. The variables are summarized as:
+1. **tBodyAcc-mean()-X**: Mean of body acceleration signal in the X direction.
+2. **tBodyAcc-mean()-Y**: Mean of body acceleration signal in the Y direction.
+3. **tBodyAcc-mean()-Z**: Mean of body acceleration signal in the Z direction.
+4. **tBodyAcc-std()-X**: Standard deviation of body acceleration signal in the X direction.
+5. **tBodyAcc-std()-Y**: Standard deviation of body acceleration signal in the Y direction.
+6. **tBodyAcc-std()-Z**: Standard deviation of body acceleration signal in the Z direction.
+   *(... and so on for other measurements)*
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+---
 
-```{r cars}
-summary(cars)
-```
+#### **4. Transformations**
+The following transformations were applied to the original dataset to create this tidy dataset:
 
-## Including Plots
+1. **Merging Data:**
+   - Combined the training and test datasets into a single dataset.
 
-You can also embed plots, for example:
+2. **Extracting Relevant Measurements:**
+   - Retained only measurements on the mean (`-mean()`) and standard deviation (`-std()`) for each signal.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+3. **Using Descriptive Activity Names:**
+   - Replaced activity codes with descriptive names (e.g., `1` → `WALKING`).
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+4. **Labeling Dataset:**
+   - Variable names were made descriptive by removing special characters and clarifying their meaning.
+
+5. **Creating a Tidy Dataset:**
+   - Calculated the average of each variable for each subject and activity combination.
+
+---
+
+#### **5. File Description**
+1. **`tidy_data.txt`**: A text file containing the tidy dataset.
+2. **`run_analysis.R`**: R script used to perform the data cleaning and transformations.
+3. **`README.md`**: Explains how to use the repository and run the scripts.
+4. **`CodeBook.md`**: This file describing the dataset, variables, and transformations.
